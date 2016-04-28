@@ -10,9 +10,12 @@
 }
 #tg{
 
-    float:right;
+    /*float:right;*/
     height: 400px;
     width:600px;
+    position: relative;
+    left:700px;
+    bottom: 400px;
 }
 /*#player{
     position: fixed;
@@ -73,9 +76,12 @@ select {
 #t{
     border-collapse: collapse;
     border:1px solid cornflowerblue;
-    float:right;
+    /*float:right;*/
     margin-right: 10px;
     width: 700px;
+    position:relative;
+    bottom:400px;
+    left:665px;
 }
 #tbl{
     border-collapse: collapse;
@@ -85,6 +91,9 @@ select {
     margin-bottom: 50px;
     width: 600px;
     visibility: collapse;
+    position: relative;
+    bottom:470px;
+
 
 }
 #printResult{
@@ -93,6 +102,8 @@ select {
     font-size: 30px;
     margin-left: 60px;
     visibility: hidden;
+    position: relative;
+    bottom:470px;
 
 }
 
@@ -126,6 +137,7 @@ select {
 #filter{
     position:relative;
     left:700px;
+    bottom: 400px;
     width: 350px;
     height:20px;
 
@@ -135,5 +147,9 @@ select {
     top:100px;
     left:100px;
     color:white;
+}
+button{
+    position: relative;
+    bottom:470px;
 }
 
