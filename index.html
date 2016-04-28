@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SportNerd</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); //we first setup the player than the other APIs
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: '23zesbCCROo',
+                events: {
+                    /*'onReady': onPlayerReady,*/
+                    'onStateChange': setInterval(getCurTime,1000),
+
+                }
+            });
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+
+<h1 id="header" >Crowdsourced   <select> <option>Basketball</option> <option>Boxing</option> <option>Football</option></select>   analytics </h1>
+
+
+
+
+<input type ="text"  placeholder="input video url" id="inp" onchange="changeUrl()">
+<p>
+
+    <div id="player" > </div>
+<div id="tg" > <!--this is the main container of tags -->
+    <div class = "c1"      id="tg1" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)" >Blocked shot</div>
+    <div class = "c1"      id="tg2" draggable="true"  ondragstart="drag(event)"  onclick = "deleteTag(this)"  >Attempt</div>
+    <div class = "c1"      id="tg3" draggable="true"  ondragstart="drag(event)"  onclick = "deleteTag(this)"  >Successful</div>
+    <div class = "c1"      id="tg4" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)" >Transition</div>
+    <div class = "c1"      id="tg5" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)" >Isolation</div>
+    <div class = "c1"      id="tg6" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)">Pick and Roll: Ball Handler</div>
+    <div class = "c1"      id="tg7" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)">Pick and Roll: Roll Man</div>
+    <div class = "c1"      id="tg8" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)">Post-Up</div>
+    <div class = "c1"      id="tg9" draggable="true" ondragstart="drag(event)"   onclick = "deleteTag(this)">Spot-Up</div>
+    <div class = "c1"      id="tg10" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Cut pass</div>
+    <div class = "c1"      id="tg11" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Rebound</div>
+    <div class = "c1"      id="tg12" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Off Screen</div>
+    <div class = "c1"      id="tg13" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Offensive</div>
+    <div class = "c1"      id="tg14" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Defensive</div>
+    <div class = "c1"      id="tg15" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Creative pass</div>
+    <div class = "c1"      id="tg16" draggable="true" ondragstart="drag(event)"  onclick = "deleteTag(this)">Steals</div>
+
+
+</div>
+</p>
+<p>
+    <input type="search" id="filter" onchange="filtering()" placeholder="Type tag name to filter out the rest">
+</p>
+
+<p>
+
+    <table id="t"  >
+    <tr id="t3" > <!--this is "drop" raw -->
+        <td id="t2" width="40px"  onclick="onClickTable(this)" ></td>
+        <td id="t1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="experiment()">click for the info  </td>
+        <td id="t1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="experiment()" >click here for the info</td>
+    </tr>
+
+    </table>
+
+<button onclick="analyzeThis()">Analyze this !</button>
+
+<p id="printResult"  >The game analisys
+    <table  id="tbl">
+    <tr id="tbl3">
+        <td id="tbl2">Play Mode</td>
+        <td id="tbl2">Team1</td>
+        <td id="tbl2">Team2</td>
+    </tr>
+    <tr id="tbl3">
+        <td id="tbl2">Defensive mode</td>
+        <td id="tbl4"></td>
+        <td id="tbl4"></td>
+    </tr>
+
+    <tr id="tbl3">
+        <td id="tbl2">Offensive mode</td>
+        <td id="tbl4"></td>
+        <td id="tbl4"></td>
+    </tr>
+    <tr id="tbl3">
+        <td id="tbl2">Successful plays</td>
+        <td id="tbl4"></td>
+        <td id="tbl4"></td>
+    </tr>
+    <tr id="tbl3">
+        <td id="tbl2">Attempted plays</td>
+        <td id="tbl4"></td>
+        <td id="tbl4"></td>
+    </tr>
+
+
+
+</table>
+
+</p>
+
+<script src="1.js"></script>
+
+
+ <!--this script loads general gapi-->
+
+
+</body>
+</html>

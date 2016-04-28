@@ -1,0 +1,139 @@
+#inp{
+    height: 20px;
+    width: 350px;
+    left: 70px;
+    position: relative;
+    top:10px;
+}
+#header{
+    margin-left: 150px;
+}
+#tg{
+
+    float:right;
+    height: 400px;
+    width:600px;
+}
+/*#player{
+    position: fixed;
+    float:left;
+}*/
+
+h1{
+    color:darkcyan;
+    font-family: "American Typewriter";
+}
+select {
+    color:darkcyan;
+    font-family: "American Typewriter";
+    width: 150px;
+    font-size: 30px;
+}
+
+.c1{
+    border:1px solid cornflowerblue;
+    background-color: aliceblue;
+    display:inline-block;
+    padding: 3px;
+    font-family: "American Typewriter";
+    color: darkcyan;
+    margin: 5px;
+    float:right;
+
+
+}
+#tg1,#tg5{
+    left: 1500px;
+    right: 5px;
+
+}
+
+#t1,#t4{
+
+    border:1px solid cornflowerblue;
+    height: 50px;
+    width: 200px;
+    /*font-family: "American Typewriter";*/
+    font-size: 20px;
+    color: green;
+    padding:3px;
+
+}
+
+#t3 {
+
+    border: 1px solid cornflowerblue;
+    height: 50px;
+    width: 500px;
+    font-family: "American Typewriter";
+    color: darkcyan;
+    padding: 3px;
+}
+
+#t{
+    border-collapse: collapse;
+    border:1px solid cornflowerblue;
+    float:right;
+    margin-right: 10px;
+    width: 700px;
+}
+#tbl{
+    border-collapse: collapse;
+    border:1px solid cornflowerblue;
+    /*float:left;*/
+    margin-right: 10px;
+    margin-bottom: 50px;
+    width: 600px;
+    visibility: collapse;
+
+}
+#printResult{
+    color:darkblue;
+    font-family: "American Typewriter";
+    font-size: 30px;
+    margin-left: 60px;
+    visibility: hidden;
+
+}
+
+#tbl3 {
+    border: 1px solid cornflowerblue;
+    height: 50px;
+    width: 500px;
+    font-family: "American Typewriter";
+    padding: 3px;
+}
+
+#tbl2 {
+    border: 1px solid cornflowerblue;
+    height: 50px;
+    width: 200px;
+    /*font-family: "American Typewriter";*/
+    font-size: 20px;
+    color: cadetblue;
+    padding: 3px;
+}
+
+#tbl4 {
+    border: 1px solid cornflowerblue;
+    height: 50px;
+    width: 200px;
+    /*font-family: "American Typewriter";*/
+    font-size: 15px;
+    color: rebeccapurple;
+    padding: 3px;
+}
+#filter{
+    position:relative;
+    left:700px;
+    width: 350px;
+    height:20px;
+
+}
+#exp{
+    position: relative;
+    top:100px;
+    left:100px;
+    color:white;
+}
+
