@@ -63,23 +63,11 @@
     <input type="search" id="filter" onchange="filtering()" placeholder="Type tag name to filter out the rest">
 </p>
 
-<p>
-
-    <table id="t"  >
-    <tr id="t3" > <!--this is "drop" raw -->
-        <td id="t2" width="40px"  onclick="onClickTable(this)" ></td>
-        <td id="t1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="experiment()">click for the info  </td>
-        <td id="t1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="experiment()" >click here for the info</td>
-    </tr>
-
-    </table>
-
-
 <button  onclick="analyzeThis()">Analyze this !</button>
 
+<p id="printResult"  >The game analysis</p>
 
-<p id="printResult"  >The game analisys
-    <table  id="tbl">
+<table  id="tbl">
     <tr id="tbl3">
         <td id="tbl2">Play Mode</td>
         <td id="tbl2">Team1</td>
@@ -106,12 +94,24 @@
         <td id="tbl4"></td>
         <td id="tbl4"></td>
     </tr>
+</table>
 
 
+<table id="t">
+    <tr id="t3" > <!--this is "drop" raw -->
+        <td id="t2" width="40px"  onclick="onClickTable(this)" ></td>
+        <td id="t1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="experiment()">click for the info  </td>
+        <td id="t1" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="experiment()" >click here for the info</td>
+    </tr>
 
 </table>
 
-</p>
+
+
+
+
+
+
 
 <script src="1.js"></script>
 

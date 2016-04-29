@@ -80,8 +80,9 @@ select {
     margin-right: 10px;
     width: 700px;
     position:relative;
-    bottom:400px;
-    left:665px;
+    bottom:850px;
+    left:655px;
+    right:10px;
 }
 #tbl{
     border-collapse: collapse;
@@ -92,7 +93,7 @@ select {
     width: 600px;
     visibility: collapse;
     position: relative;
-    bottom:470px;
+    bottom:440px;
 
 
 }
@@ -103,7 +104,7 @@ select {
     margin-left: 60px;
     visibility: hidden;
     position: relative;
-    bottom:470px;
+    bottom:430px;
 
 }
 
@@ -150,6 +151,7 @@ select {
 }
 button{
     position: relative;
-    bottom:470px;
+    top:-430px;
+
 }
 
