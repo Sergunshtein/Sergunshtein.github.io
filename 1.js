@@ -228,10 +228,20 @@ var tags = {
 //--------------What happens if we press "Analyse this " button--------------------
 
 function analyzeThis(){
+    clearTableContent();
     tagsToArray(1);
     tagsToArray(2);
     document.getElementById("printResult").style.visibility="visible"
     document.getElementById("tbl").style.visibility="visible"
+}
+
+//just in case we have some values from pressing the button before
+function clearTableContent (){
+    var rows= Array.from(document.getElementById("tbl").rows)    ;
+    for (var i=1;i<rows.length; i++){
+        rows[i].cells[1].innerHTML="";
+        rows[i].cells[2].innerHTML="";
+    }
 }
 
 //all tags for both teams in the session
@@ -239,6 +249,7 @@ var meta=[[],[]]
 
 //takes tags from the table to array of meta
 function tagsToArray(team){
+    meta[team-1]=[];
     var x= Array.from(document.getElementById("t").rows);
     x.forEach(function(row){                              //FHO as required
         var cell=[]
@@ -255,20 +266,13 @@ function tagsToArray(team){
     countTags("Successful",team);
     countTags("Attempt",team);
 }
+//bring this inside the function
 
-var stats ={1:{Defensive:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
-    "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
 
-    Offensive :{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
-        "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
+//this loops through meta and if founds playMode then counts the rest of a tags
+function countTags(playMode,team) {
 
-    Successful:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
-        "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
-
-    Attempt:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
-        "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0}
-},
-    2:{Defensive:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
+    var stats ={1:{Defensive:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
         "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
 
         Offensive :{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
@@ -279,11 +283,21 @@ var stats ={1:{Defensive:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transitio
 
         Attempt:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
             "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0}
-    }
-}
+    },
+        2:{Defensive:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
+            "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
 
-//this loops through meta and if founds playMode then counts the rest of a tags
-function countTags(playMode,team) {
+            Offensive :{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
+                "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
+
+            Successful:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
+                "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0},
+
+            Attempt:{"Blocked shot":0,"Attempt":0,"Successful":0,"Transition":0,"Isolation":0,"Pick and Roll: Ball Handler":0,"Pick and Roll: Roll Man":0,
+                "Post-Up":0,"Spot-Up":0,"Cut pass":0,"Rebound":0,"Off Screen":0,"Offensive":0,"Defensive":0,"Creative pass":0,"Steals":0}
+        }
+    };
+
     meta[team-1].forEach(function(y){          //Callback, as required
         if (y.indexOf(playMode) != -1) {
             y.forEach(function(x){
@@ -297,38 +311,43 @@ function countTags(playMode,team) {
     });
 
     findMax(playMode,team);
-}
 
-function findMax(playMode,team) {  //this loop finds max value in stats
-    var max = 0;
-    for (var i in stats[team][playMode]) {
-        if (stats[team][playMode][i] > max) { //REDUCE method
-            max = stats[team][playMode][i]
-        }
-    }
-
-    function findMostFrequent(playMode,team) {                       //this loop will find most frequent
-        var table2=document.getElementById("tbl");
-        for (var key in stats[team][playMode]) {
-            if (stats[team][playMode][key] == max) { //compare value of a key (activity type) with the max
-                if (playMode=="Defensive"&& stats[team][playMode][key]!=0){
-                    table2.rows[1].cells[team].innerHTML+=" "+key;
-                }
-                if (playMode=="Offensive"&& stats[team][playMode][key]!=0){
-                    table2.rows[2].cells[team].innerHTML+=" "+key;
-                }
-                if (playMode=="Successful"&& stats[team][playMode][key]!=0){
-                    table2.rows[3].cells[team].innerHTML+=" "+key;
-                }
-                if (playMode=="Attempt"&& stats[team][playMode][key]!=0){
-                    table2.rows[4].cells[team].innerHTML+=" "+key;
-                }
+    function findMax(playMode,team) {  //this loop finds max value in stats
+        var max = 0;
+        for (var i in stats[team][playMode]) {
+            if (stats[team][playMode][i] > max) { //REDUCE method
+                max = stats[team][playMode][i]
             }
         }
 
+        function findMostFrequent(playMode,team) {                       //this loop will find most frequent
+            var table2=document.getElementById("tbl");
+            for (var key in stats[team][playMode]) {
+                if (stats[team][playMode][key] == max) { //compare value of a key (activity type) with the max
+                    if (playMode=="Defensive"&& stats[team][playMode][key]!=0){
+                        table2.rows[1].cells[team].innerHTML+=" "+key;
+                    }
+                    if (playMode=="Offensive"&& stats[team][playMode][key]!=0){
+                        table2.rows[2].cells[team].innerHTML+=" "+key;
+                    }
+                    if (playMode=="Successful"&& stats[team][playMode][key]!=0){
+                        table2.rows[3].cells[team].innerHTML+=" "+key;
+                    }
+                    if (playMode=="Attempt"&& stats[team][playMode][key]!=0){
+                        table2.rows[4].cells[team].innerHTML+=" "+key;
+                    }
+                }
+            }
+
+        }
+        findMostFrequent(playMode,team)
     }
-    findMostFrequent(playMode,team)
+
+
+
 }
+
+
 
 //------------ the end of analytical functionality --------------
 
@@ -376,7 +395,8 @@ function filtering (){           //this will filter current table by specific ta
 
 
 /*
-Future plans 2) post your analysis on the fan pages 3) add your tags  + explanation 4) game ananlysys should every time run with 0 values
+Future plans 1) save to My videos (need a database )   2) post your analysis on the fan pages 3) add your tags  + explanation 5) email or share any part of the video along
+ with the attached tags
 
 
 */
